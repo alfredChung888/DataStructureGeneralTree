@@ -1,0 +1,120 @@
+Describe the algorithms of the functions:
+Inserting
+addItem(node)
+This function uses 2 other functions:
+keyGenerate()
+-	Generates a key value using global variables that iterate before every return of key 
+value. This ensures all values are unique and automated.
+
+
+Big O notation: O(1)
+For this part of the program, due to not needing to iterate through the tree to check if 
+key is already in the tree. It is O(1) as all it does is generate keys, asks for inputs 
+and push_back() into end of vector.
+
+Pseudo-code:
+-	Initialise variables
+-	Create pointer of type Node
+-	Allocate memory to for the pointer
+-	Set the key
+-	Ask for:
+o	Title
+o	Description
+o	Selling price
+o	Quantity
+o	Maximum discount
+-	Store values in class as protected.
+-	Add the pointer to the address(node) that stores these values to vector.
+
+addCategory(node)
+This function is very similar to addItem(), but instead only asks for title of the 
+category. It uses same function to generate the node but it uses positive numbers.
+
+Big O notation: also O(1)
+Pseudo-code:
+-	Initialise variables
+-	Create pointer of type Node
+-	Allocate memory to for the pointer
+-	Set the key
+-	Ask for:
+o	Title
+-	Store title in class as protected.
+-	Add the pointer to the address(node) that stores these values to vector.
+
+
+
+Updating
+modifyItem(node) and modifyCategory(node)
+The idea of this function is to temporarily create a new pointer of type node to get 
+and store inputs. Then copy/set those values to the node object that is to be changed.
+Big O notation: O(1)
+Because all that is needed is for user input the new values and the program stores each 
+of the values that is needed to be modified. 
+
+Pseudo-code:
+Before you can access these functions:
+Code checks if user is a manager or not. Only managers can update items.
+-	Creates new pointer of type Node
+-	Allocate memory space for the pointer 
+-	Set whether item/category is true or false
+-	Ask for:
+o	Title (only ask for this for category)
+Else also ask for:
+o	Description
+o	Quantity
+o	Price
+o	Max discount
+
+-	Assign each variable of the new Node to the Node to be changed variables.
+e.g. oldNode.title== newNode.title
+
+
+Searching
+search(node,iterate)
+Due to the nature of the general tree, it is not balanced. It searches the whole tree to 
+look for any title/description that matches the phrase given by the user.
+Big O notation: O(n)
+The worst case scenario for this function will be O(n) as it goes through the whole tree 
+to look for the phrase inputted. This makes it inefficient as it will take a long time if
+ the tree is very large.
+
+Pseudo-code:
+-	Check if general tree is empty
+-	Iterate from the beginning to the end of that category. 
+(note: main menu is a category).
+-	Check each child of the category if it’s title/description matches the phrase given.
+
+If it is true:
+-	Then print the item
+-	Send confirmation message to user.
+If the child has a child(is a category):
+-	Go and search that one first
+-	Run code recursively.
+-	When it checks all children, go back to main menu and check the other children. If it 
+is a category, do the same.
+
+Deletion
+The deletion part of the program is a function provided by the vector header file. 
+The following code deletes the node from the tree:
+-	node->item.confirmAction("buy");
+ node->child.erase(node->child.begin() + index-1);
+                return;
+
+Big O notation: O(1)
+The worst case scenario for this function will be O(1) as it is already in the category. 
+The function deletes the item without traversing the tree.
+
+Pseudo-code:
+-	erase the child of the parent node. 
+
+
+Justification of the data structures you have created:
+The reason why I utilised this data structure is because: 
+-	As shown, it is efficient in updating and inserting data. This is due to the nature of
+ easily being able to access each node and their values. 
+
+-	However, at the cost of this. Anything that requires iterating like searching through
+ the tree will be compromised and made much less efficient.
+o	This is because there is no way to traverse the tree and with each search, divide the 
+contents of the tree. 
+
